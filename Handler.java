@@ -1,3 +1,7 @@
+/**
+ * Handler class ensures all objects are rendered on screen.
+ */
+
 package com.main;
 
 import com.main.GameObject;

@@ -1,3 +1,7 @@
+/**
+ * Provides the basic methods for all objects which will appear in the game.
+ */
+
 package com.main;
 
 import java.awt.*;
