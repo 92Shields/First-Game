@@ -1,3 +1,8 @@
+/**
+ * KeyInput class handles the key input for the game.
+ * The class is used for player movement and navigation.
+ */
+
 package com.main;
 
 import java.awt.event.*;
@@ -67,5 +72,6 @@ public class KeyInput extends KeyAdapter {
                 }
             }
         }
+        if(key == KeyEvent.VK_ESCAPE) System.exit(1);
     }
 }

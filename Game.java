@@ -1,3 +1,8 @@
+/**
+ * Main class which represent the game. Runs all methods necessary for the game
+ * to play and refresh the display.
+ */
+
 package com.main;
 
 import java.awt.*;
@@ -10,14 +15,18 @@ public class Game extends Canvas implements Runnable
     private Thread thread;
     private boolean running = false;
     private Handler handler;
+    private HUD hud;
 
     public Game()
     {
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
         new Window(WIDTH, HEIGHT, "First game", this);
+        hud = new HUD();
 
         handler.addObject(new Player(100, 100, ID.Player)); //for testing
+        handler.addObject(new BasicEnemy(100, 100, ID.BasicEnemy)); //for testing
+
     }
 
     public synchronized void start()
@@ -42,6 +51,7 @@ public class Game extends Canvas implements Runnable
 
     public void run()
     {
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -77,6 +87,7 @@ public class Game extends Canvas implements Runnable
     private void tick()
     {
         handler.tick();
+        hud.tick();
     }
 
     private void render()
@@ -95,8 +106,26 @@ public class Game extends Canvas implements Runnable
 
         handler.render(g);
 
+        hud.render(g);
+
         g.dispose();
         bs.show();
+    }
+
+    public static int clamp(int var, int min, int max)
+    {
+        if(var >= max)
+        {
+            return var = max;
+        }
+        else if(var <= min)
+        {
+            return var = min;
+        }
+        else
+        {
+            return var;
+        }
     }
 
     public static void main(String args[])

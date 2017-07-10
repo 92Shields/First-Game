@@ -1,3 +1,8 @@
+/**
+ * Window class is responsible for creating the window in which the game
+ * will take place.
+ */
+
 package com.main;
 
 import java.awt.*;
